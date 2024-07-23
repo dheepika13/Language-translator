@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translator</title>
+    <style>
+        /* Style for left and right sections */
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh; /* Make the container fill the entire viewport height */
+        }
+        .left {
+            flex: 1;
+            padding-bottom: 200px;
+            background: linear-gradient(to right, #FFA500, #FF8C00, #FF6347); /* Gradient with shades of orange */
+            color: white; /* Text color */
+            text-align: center; /* Center align text */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .right {
+            flex: 1;
+            padding: 20px;
+        }
+        .logo img {
+            width: 150px; /* Adjust the width of the logo as needed */
+            margin-bottom: 20px; /* Add some spacing between the logo and text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">                      
+            <h1>LinguaSwap</h1>
+            <h3>The power of language swapping</h3>
+        </div>
+        <div class="right">
+            <h1>Language Translator</h1>
+            <form method="POST">
+                <label for="input_text">Enter text in English:</label><br>
+                <textarea id="input_text" name="input_text" rows="4" cols="50">{{ input_text }}</textarea><br><br>
+                <label for="dest_lang">Choose destination language:</label><br>
+                <select id="dest_lang" name="dest_lang">
+                    {% for lang_code in languages %}
+                        <option value="{{ lang_code }}">{{ lang_code }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <input type="submit" value="Translate">
+            </form>
+            {% if translated_text %}
+                <h2>Translated Text:</h2>
+                <p>{{ translated_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
